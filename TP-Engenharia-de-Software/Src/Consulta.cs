@@ -7,7 +7,7 @@ using TP_Engenharia_de_Software.Models;
 
 namespace TP_Engenharia_de_Software
 {
-    public static class Consulta
+    public class Consulta
     {
         private static readonly string _nomeArquivoJson = "consultas.json";
 

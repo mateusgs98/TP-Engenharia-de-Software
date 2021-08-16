@@ -6,7 +6,7 @@ using TP_Engenharia_de_Software.Models;
 
 namespace TP_Engenharia_de_Software
 {
-    public static class Exame
+    public class Exame
     {
         private static readonly string _nomeArquivoJson = "exames.json";
 
