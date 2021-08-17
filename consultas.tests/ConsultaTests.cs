@@ -7,10 +7,17 @@ namespace consultas.tests
     public class ConsultaTests
     {
         [Fact]
-        public void ConsultarHistoricoPaciente_BuscaHistoricoCorreto()
+        public void MarcarConsulta_Test()
         {
-            Consulta c = new Consulta();
+            bool result = Consulta.MarcarConsulta();
+            Assert.True(result);
+        }
 
+        [Fact]
+        public void ConsultarHistoricoPaciente_Test()
+        {
+            bool result = Consulta.ConsultarHistoricoPaciente();
+            Assert.True(result);
         }
     }
 }

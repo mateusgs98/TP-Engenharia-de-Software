@@ -7,9 +7,17 @@ namespace exames.tests
     public class ExameTests
     {
         [Fact]
-        public void Test1()
+        public void CadastrarResultadoExame_Test()
         {
+            bool result = Exame.CadastrarResultadoExame();
+            Assert.True(result);
+        }
 
+        [Fact]
+        public void ConsultarResultadoExame_Test()
+        {
+            bool result = Exame.CadastrarResultadoExame();
+            Assert.True(result);
         }
     }
 }

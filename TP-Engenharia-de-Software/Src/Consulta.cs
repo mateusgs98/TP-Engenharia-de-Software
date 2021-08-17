@@ -11,7 +11,7 @@ namespace TP_Engenharia_de_Software
     {
         private static readonly string _nomeArquivoJson = "consultas.json";
 
-        public static void MarcarConsulta()
+        public static bool MarcarConsulta()
         {
             try
             {
@@ -34,14 +34,16 @@ namespace TP_Engenharia_de_Software
                 JsonFileHelper.SalvarConteudoArquivoJson(consultas, _nomeArquivoJson);
 
                 Console.WriteLine("Consulta marcada com sucesso!");
+                return true;
             }
             catch
             {
                 Console.WriteLine("Ocorreu um erro ao marcar a consulta. Por favor tente novamente.");
+                return false;
             }
         }
 
-        public static void ConsultarHistoricoPaciente()
+        public static bool ConsultarHistoricoPaciente()
         {
             try
             {
@@ -58,15 +60,18 @@ namespace TP_Engenharia_de_Software
                     {
                         Console.WriteLine($@"{i + 1} - Data e Hora: {consultasPaciente[i].DataHora:g}. Local: {consultasPaciente[i].Local}");
                     }
+                return true;
                 }
                 else
                 {
                     Console.WriteLine($"Não foram encontradas consultas para o paciente com o documento: {documentoPaciente}");
+                return false;
                 }
             }
             catch
             {
                 Console.WriteLine("Ocorreu um erro ao consultar o histórico do paciente. Por favor tente novamente.");
+            return false;
             }
         }
     }
