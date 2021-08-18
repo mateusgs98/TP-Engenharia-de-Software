@@ -6,11 +6,11 @@ using TP_Engenharia_de_Software.Models;
 
 namespace TP_Engenharia_de_Software
 {
-    public static class Exame
+    public class Exame
     {
         private static readonly string _nomeArquivoJson = "exames.json";
 
-        public static void CadastrarResultadoExame()
+        public static bool CadastrarResultadoExame()
         {
             try
             {
@@ -36,14 +36,16 @@ namespace TP_Engenharia_de_Software
 
                 if (dadosExame.DisponivelPaciente)
                     Console.WriteLine($"Chave para consulta do exame: {dadosExame.Id}.");
+                return true;
             }
             catch
             {
                 Console.WriteLine("Ocorreu um erro ao lançar o exame. Por favor tente novamente.");
+                return false;
             }
         }
 
-        public static void ConsultarResultadoExame()
+        public static bool ConsultarResultadoExame()
         {
             try
             {
@@ -60,10 +62,12 @@ namespace TP_Engenharia_de_Software
                 {
                     Console.WriteLine($"Não foi encontrado nenhum exame disponível para consulta com a chave: {chaveConsulta}.");
                 }
+                return true;
             }
             catch
             {
                 Console.WriteLine("Ocorreu um erro ao consultar o resultado do exame. Por favor tente novamente.");
+                return false;
             }
         }
     }
