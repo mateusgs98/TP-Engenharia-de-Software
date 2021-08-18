@@ -1,5 +1,5 @@
-using System;
 using TP_Engenharia_de_Software;
+using TP_Engenharia_de_Software.Helpers;
 using Xunit;
 
 namespace exames.tests
@@ -9,14 +9,16 @@ namespace exames.tests
         [Fact]
         public void CadastrarResultadoExame_Test()
         {
-            bool result = Exame.CadastrarResultadoExame();
+            IObterDados obterDados = new ObterDadosMock();
+            bool result = Exame.CadastrarResultadoExame(obterDados);
             Assert.True(result);
         }
 
         [Fact]
         public void ConsultarResultadoExame_Test()
         {
-            bool result = Exame.CadastrarResultadoExame();
+            IObterDados obterDados = new ObterDadosMock();
+            bool result = Exame.CadastrarResultadoExame(obterDados);
             Assert.True(result);
         }
     }

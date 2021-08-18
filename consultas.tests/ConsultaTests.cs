@@ -1,5 +1,5 @@
-using System;
 using TP_Engenharia_de_Software;
+using TP_Engenharia_de_Software.Helpers;
 using Xunit;
 
 namespace consultas.tests
@@ -9,14 +9,16 @@ namespace consultas.tests
         [Fact]
         public void MarcarConsulta_Test()
         {
-            bool result = Consulta.MarcarConsulta();
+            IObterDados obterDados = new ObterDadosMock();
+            bool result = Consulta.MarcarConsulta(obterDados);
             Assert.True(result);
         }
 
         [Fact]
         public void ConsultarHistoricoPaciente_Test()
         {
-            bool result = Consulta.ConsultarHistoricoPaciente();
+            IObterDados obterDados = new ObterDadosMock();
+            bool result = Consulta.ConsultarHistoricoPaciente(obterDados);
             Assert.True(result);
         }
     }

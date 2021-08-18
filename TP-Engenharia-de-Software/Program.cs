@@ -1,4 +1,5 @@
 ﻿using System;
+using TP_Engenharia_de_Software.Helpers;
 
 namespace TP_Engenharia_de_Software
 {
@@ -24,22 +25,23 @@ Para sair, pressione qualquer outra tecla.");
         private static bool DirecionarOperacao(string comando)
         {
             bool finalizarExecucao = false;
+            IObterDados obterDados = new ObterDados();
             switch (comando)
             {
                 case "c":
-                    Consulta.MarcarConsulta();
+                    Consulta.MarcarConsulta(obterDados);
                     break;
 
                 case "h":
-                    Consulta.ConsultarHistoricoPaciente();
+                    Consulta.ConsultarHistoricoPaciente(obterDados);
                     break;
 
                 case "e":
-                    Exame.CadastrarResultadoExame();
+                    Exame.CadastrarResultadoExame(obterDados);
                     break;
 
                 case "r":
-                    Exame.ConsultarResultadoExame();
+                    Exame.ConsultarResultadoExame(obterDados);
                     break;
 
                 default:

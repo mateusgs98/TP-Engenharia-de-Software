@@ -6,27 +6,27 @@ using TP_Engenharia_de_Software.Models;
 
 namespace TP_Engenharia_de_Software
 {
-    public class Exame
+    public static class Exame
     {
         private static readonly string _nomeArquivoJson = "exames.json";
 
-        public static bool CadastrarResultadoExame()
+        public static bool CadastrarResultadoExame(IObterDados obterDados)
         {
             try
             {
                 var dadosExame = new DadosExame();
 
                 Console.WriteLine("Insira o nome do paciente:");
-                dadosExame.NomePaciente = Console.ReadLine();
+                dadosExame.NomePaciente = obterDados.ObterNome();
 
                 Console.WriteLine("Insira o nome do exame:");
-                dadosExame.NomeExame = Console.ReadLine();
+                dadosExame.NomeExame = obterDados.ObterExame();
 
                 Console.WriteLine("Insira o resultado do exame:");
-                dadosExame.Resultado = Console.ReadLine();
+                dadosExame.Resultado = obterDados.ObterResultado();
 
                 Console.WriteLine(@"O exame estará disponível para consulta? Pressione ""s"" para SIM, qualquer outra tecla para NÃO:");
-                dadosExame.DisponivelPaciente = Console.ReadLine().ToLower() == "s";
+                dadosExame.DisponivelPaciente = obterDados.ObterDisponibilidade().ToLower() == "s";
 
                 var exames = JsonFileHelper.DesserializarArquivoJson<List<DadosExame>>(_nomeArquivoJson);
                 exames.Add(dadosExame);
@@ -36,21 +36,23 @@ namespace TP_Engenharia_de_Software
 
                 if (dadosExame.DisponivelPaciente)
                     Console.WriteLine($"Chave para consulta do exame: {dadosExame.Id}.");
+
                 return true;
             }
             catch
             {
                 Console.WriteLine("Ocorreu um erro ao lançar o exame. Por favor tente novamente.");
+
                 return false;
             }
         }
 
-        public static bool ConsultarResultadoExame()
+        public static bool ConsultarResultadoExame(IObterDados obterDados)
         {
             try
             {
                 Console.WriteLine("Insira a chave para consulta do exame:");
-                string chaveConsulta = Console.ReadLine();
+                string chaveConsulta = obterDados.ObterChave();
 
                 var exames = JsonFileHelper.DesserializarArquivoJson<List<DadosExame>>(_nomeArquivoJson);
                 var exame = exames.FirstOrDefault(e => e.Id == chaveConsulta && e.DisponivelPaciente);
@@ -62,11 +64,13 @@ namespace TP_Engenharia_de_Software
                 {
                     Console.WriteLine($"Não foi encontrado nenhum exame disponível para consulta com a chave: {chaveConsulta}.");
                 }
+
                 return true;
             }
             catch
             {
                 Console.WriteLine("Ocorreu um erro ao consultar o resultado do exame. Por favor tente novamente.");
+
                 return false;
             }
         }

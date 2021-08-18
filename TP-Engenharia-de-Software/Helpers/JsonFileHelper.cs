@@ -19,7 +19,10 @@ namespace TP_Engenharia_de_Software.Helpers
 
         private static string ObterCaminhoArquivo(string nomeArquivo)
         {
-            return Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..", "JsonFiles", nomeArquivo);
+            return Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory
+                .Replace("consultas.tests", "TP-Engenharia-de-Software")
+                .Replace("exames.tests", "TP-Engenharia-de-Software"), 
+                "..", "..", "..", "JsonFiles", nomeArquivo);
         }
     }
 }
